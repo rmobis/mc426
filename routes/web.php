@@ -1,5 +1,7 @@
 <?php
 
+use \App\Requisition;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,17 @@
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return view('requisition-form');
+});
+
+Route::post('/', function () {
+	$req = new Requisition();
+
+	$req->topic = request('topic');
+	$req->category = request('category');
+	$req->description = request('description');
+
+	$req->save();
+
+	return redirect('/');
 });
