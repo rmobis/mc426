@@ -5,6 +5,7 @@
 - PHP 7+
   - **Extensions**
   - mbstring
+  - sqlite3
   - xml
 
 - Composer
