@@ -3,6 +3,10 @@
 ## Requirements
 
 - PHP 7+
+  - **Extensions**
+  - mbstring
+  - xml
+
 - Composer
 
 ## Setup
