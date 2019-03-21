@@ -28,3 +28,8 @@ Route::post('/', function () {
 
 	return redirect('/');
 });
+
+Route::get('/list', function () {
+	$requisitions = Requisition::all();
+	return view('requisition-list', ['requisitions' => $requisitions]);
+});
