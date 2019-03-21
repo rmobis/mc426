@@ -20,13 +20,13 @@ composer install
 Then, copy the `.env.example` file, naming it `.env`:
 
 ```bash
-touch database/database.sqlite
+cp .env.example .env
 ```
 
 And, finally, create your database file for working locally and run the migrations:
 
 ```bash
-cp .env.example .env
+touch database/database.sqlite
 php artisan migrate
 ```
 
