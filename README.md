@@ -15,7 +15,7 @@ composer install
 
 ## Local Server
 
-To start the local server on 127.0.0.0:8000, run the following command:
+To start the local server on 127.0.0.1:8000, run the following command:
 
 ```bash
 php artisan serve
