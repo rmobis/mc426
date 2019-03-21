@@ -13,16 +13,17 @@ To download the dependencies, run the following command:
 composer install
 ```
 
-Then, create your database file for working locally:
+Then, copy the `.env.example` file, naming it `.env`:
 
 ```bash
 touch database/database.sqlite
 ```
 
-And, finally, copy the `.env.example` file, naming it `.env`:
+And, finally, create your database file for working locally and run the migrations:
 
 ```bash
 cp .env.example .env
+php artisan migrate
 ```
 
 ## Local Server
