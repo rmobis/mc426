@@ -8,14 +8,15 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RequisitionTest extends TestCase
 {
-	/**
-	 * A basic test example.
-	 *
-	 * @return void
-	 */
 	public function testCanInstantiateARequisition()
 	{
 		$req = new Requisition();
 		$this->assertNotNull($req);
+	}
+
+	public function testRequisitionValidatesRequiredField()
+	{
+		$req = new Requisition();
+		$req->title = NULL;
 	}
 }
