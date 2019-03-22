@@ -13,7 +13,7 @@
 				<div class="logo-dac">
 					<img src="images/logo_dac.svg" alt="" />
 				</div>
-				<div>
+				<div class="banner__title">
 					<h2>Sistemas Acadêmicos - Formulário de Atendimento ao usuário</h2>
 				</div>
 				<div class="logo-unicamp">
@@ -33,11 +33,11 @@
 								Nova Solicitação
 							</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="#">
 								Sair
 							</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</div>
