@@ -48,7 +48,7 @@ First, install Laravel Mix running the following command:
 npm install
 ```
 
-In order to compile your sass (/resources/sass) to css (/public/css), use the following commands:
+In order to compile your SASS `resources/sass/` to CSS `public/css/`, use the following commands:
 
 ```bash
 // Run all Mix tasks...
@@ -58,7 +58,7 @@ npm run dev
 npm run production
 ```
 
-If you want to watch for changes and let Laravel Mix automatically recompile the sass files, run the following command:
+If you want to watch for changes and let Laravel Mix automatically recompile the SASS files, run the following command:
 
 
 ```bash
