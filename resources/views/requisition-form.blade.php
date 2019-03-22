@@ -3,38 +3,80 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/app.css">
 
-		<title>Laravel</title>
+		<title>Formulário de Atendimento ao usuário - Nova Solicitação</title>
 	</head>
 	<body>
-		<form action="/" method="POST">
-			@csrf
+		<header>
+			<div class="banner">
+				<div class="logo-dac">
+					<img src="images/logo_dac.svg" alt="" />
+				</div>
+				<div>
+					<h2>Sistemas Acadêmicos - Formulário de Atendimento ao usuário</h2>
+				</div>
+				<div class="logo-unicamp">
+					<img src="images/logo_unicamp.svg" alt="" height="50" />
+				</div>
+			</div>
+			<div class="navigation">
+				<div class="container">
+					<ul class="menu">
+						<li>
+							<a href="/list">
+								Minhas Solicitações
+							</a>
+						</li>
+						<li>
+							<a class="active" href="">
+								Nova Solicitação
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								Sair
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<h1>Nova Solicitação</h1>
+				<h6>(*) Campos Obrigatórios</h6>
+				<br>
+				<form action="/" method="POST">
+					@csrf
 
-			<p>
-				<label for="topic">Assunto</label>
-				<input type="text" name="topic" required>
-			</p>
-			<p>
-				<label for="category">Categoria</label>
-				<select name="category" required>
-					{{-- Placholder --}}
-					<option value="" selected disabled hidden>-- Selecione a Categoria --</option>
+					<div class="form-group">
+						<label for="topic">Assunto *</label>
+						<input class="form-control" type="text" name="topic" required>
+					</div>
+					<div class="form-group">
+						<label for="category">Categoria *</label>
+						<select class="form-control" name="category" required>
+							{{-- Placholder --}}
+							<option value="" selected disabled hidden>-- Selecione a Categoria --</option>
 
-					<option value="rooms-and-schedule">Salas & Horários</option>
-					<option value="category-2">Categoria 2</option>
-					<option value="category-3">Categoria 3</option>
-					<option value="category-4">Categoria 4</option>
-					<option value="category-5">Categoria 5</option>
-					<option value="category-6">Categoria 6</option>
-					<option value="category-7">Categoria 7</option>
-				</select>
-			</p>
-			<p>
-				<label for="description">Descrição</label>
-				<textarea name="description" required></textarea>
-			</p>
+							<option value="rooms-and-schedule">Salas & Horários</option>
+							<option value="category-2">Categoria 2</option>
+							<option value="category-3">Categoria 3</option>
+							<option value="category-4">Categoria 4</option>
+							<option value="category-5">Categoria 5</option>
+							<option value="category-6">Categoria 6</option>
+							<option value="category-7">Categoria 7</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="description">Descrição *</label>
+						<textarea class="form-control" name="description" rows="3" required></textarea>
+					</div>
 
-			<input type="submit">
-		</form>
+					<button class="btn btn-dac" type="submit">Enviar</button>
+				</form>
+			</div>
+		</main>
 	</body>
 </html>

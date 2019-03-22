@@ -8,7 +8,53 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-	background-color: #fff;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// Custom CSS
+.btn-dac {
+	background: #53428b;
+	color: white;
+	&:hover {
+		color: white;
+		background: #3a2e61;
+	}
+}
+// Header
+.banner {
+	background: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	h2 {
+		margin: 0;
+	}
+}
+.navigation {
+	background: #53428b;
+	.menu {
+		padding: 0;
+		margin: 0;
+		& > li {
+			display: inline-block;
+			& > a {
+				display: block;
+				padding: 10px 15px;
+				color: white;
+				text-decoration: none;
+				transition: all .3s;
+				&:hover {
+					background: #3a2e61;
+				}
+				&.active {
+					background: #E87717;
+					&:hover {
+						background: #ca6815;
+					}
+				}
+			}
+		}
+	}
+}
+// Main
+main {
+	padding: 30px 0;
 }

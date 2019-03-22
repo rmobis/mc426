@@ -26,7 +26,7 @@ Route::post('/', function () {
 
 	$req->save();
 
-	return redirect('/');
+	return redirect('/list');
 });
 
 Route::get('/list', function () {
