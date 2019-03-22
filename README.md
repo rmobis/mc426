@@ -40,3 +40,27 @@ To start the local server on 127.0.0.1:8000, run the following command:
 ```bash
 php artisan serve
 ```
+
+## Compiling CSS (Laravel Mix)
+First, install Laravel Mix running the following command:
+
+```bash
+npm install
+```
+
+In order to compile your sass (/resources/sass) to css (/public/css), use the following commands:
+
+```bash
+// Run all Mix tasks...
+npm run dev
+
+// Run all Mix tasks and minify output...
+npm run production
+```
+
+If you want to watch for changes and let Laravel Mix automatically recompile the sass files, run the following command:
+
+
+```bash
+npm run watch
+```
