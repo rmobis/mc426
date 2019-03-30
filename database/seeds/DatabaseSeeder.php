@@ -9,6 +9,11 @@ class DatabaseSeeder extends Seeder {
 	 * @return void
 	 */
 	public function run() {
-		// $this->call(UsersTableSeeder::class);
+		Eloquent::unguard();
+
+		$this->call(CategoriesTableSeeder::class);
+		$this->call(RequisitionsTableSeeder::class);
+
+		Eloquent::reguard();
 	}
 }
