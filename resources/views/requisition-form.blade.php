@@ -60,13 +60,9 @@
 							{{-- Placholder --}}
 							<option value="" selected disabled hidden>-- Selecione a Categoria --</option>
 
-							<option value="rooms-and-schedule">Salas & Horários</option>
-							<option value="category-2">Categoria 2</option>
-							<option value="category-3">Categoria 3</option>
-							<option value="category-4">Categoria 4</option>
-							<option value="category-5">Categoria 5</option>
-							<option value="category-6">Categoria 6</option>
-							<option value="category-7">Categoria 7</option>
+							@foreach($categories as $cat)
+								<option value="{{ $cat->id }}">{{ $cat->name }}</option>
+							@endforeach
 						</select>
 					</div>
 					<div class="form-group">

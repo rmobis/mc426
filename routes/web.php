@@ -1,6 +1,7 @@
 <?php
 
 use \App\Requisition;
+use \App\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +15,16 @@ use \App\Requisition;
 */
 
 Route::get('/', function () {
-	return view('requisition-form');
+	$categories = Category::all();
+
+	return view('requisition-form', ['categories' => $categories]);
 });
 
 Route::post('/', function () {
 	$req = new Requisition();
 
 	$req->topic = request('topic');
-	$req->category = request('category');
+	$req->category_id = request('category');
 	$req->description = request('description');
 
 	$req->save();
@@ -30,6 +33,7 @@ Route::post('/', function () {
 });
 
 Route::get('/list', function () {
-	$requisitions = Requisition::all();
+	$requisitions = Requisition::with('category')->get();
+
 	return view('requisition-list', ['requisitions' => $requisitions]);
 });

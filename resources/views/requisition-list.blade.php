@@ -60,7 +60,7 @@
 							<tr>
 								<td>{{ $req->id }}</td>
 								<td>{{ $req->topic }}</td>
-								<td>{{ $req->category }}</td>
+								<td>{{ $req->category->name }}</td>
 								<td>{{ str_limit($req->description, $limit = 40, $end = '...') }}</td>
 							</tr>
 						@endforeach
