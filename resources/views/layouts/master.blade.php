@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href={{ URL::asset('css/app.css') }}>
 
 		<title>@yield('title') - Formulário de Atendimento ao usuário</title>
 	</head>
