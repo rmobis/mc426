@@ -37,3 +37,8 @@ Route::get('/list', function () {
 
 	return view('requisition-list', ['requisitions' => $requisitions]);
 });
+
+Route::get('/search/{text}', function($text) {
+	$result = Requisition::where("description", "LIKE", "%$text%")->get();
+	return $result;
+});
