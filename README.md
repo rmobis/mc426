@@ -2,6 +2,10 @@
 
 [Live!](http://dac.rmob.is/)
 
+## Project Architecture
+
+![Project Architecture](http://i.imgur.com/xw647GM.png "Project Architecture")
+
 ## Requirements
 
 - PHP 7+
