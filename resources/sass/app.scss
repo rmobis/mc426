@@ -71,6 +71,14 @@ main {
 	padding: 30px 0;
 }
 
+// Requisition List Page
+.header--filter {
+	display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
 // Media queries
 @media (max-width: 768px) {
 	.banner {

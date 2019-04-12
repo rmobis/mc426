@@ -4,7 +4,18 @@
 
 @section('content')
 	<div class="container">
-		<h1>Minhas Solicitações</h1>
+		<div class="header--filter">
+			<h1>Minhas Solicitações</h1>
+			<form class="form-inline" action="/list" method="POST" role="search">
+				{{ csrf_field() }}
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text"><i class="fa fa-search"></i></div>
+					</div>
+					<input type="search" class="form-control" name="search" placeholder="Pesquisar" value="{{ isset($text) ? $text : '' }}">
+				</div>
+			</form>
+		</div>
 		<br>
 		<table class="table table-bordered">
 			<thead class="thead-light">

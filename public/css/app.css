@@ -10729,6 +10729,13 @@ main {
   padding: 30px 0;
 }
 
+.header--filter {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media (max-width: 768px) {
   .banner h2 {
     font-size: 1.3rem;

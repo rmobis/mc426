@@ -38,7 +38,12 @@ Route::get('/list', function () {
 	return view('requisition-list', ['requisitions' => $requisitions]);
 });
 
-Route::get('/search/{text}', function($text) {
+Route::post('/list', function(Request $request) {
+	$search = request('search');
+	return redirect('list/'.$search);
+});
+
+Route::get('/list/{text}', function ($text) {
 	$result = Requisition::where("description", "LIKE", "%$text%")->orWhere("topic", "LIKE", "%$text%")->get();
-	return view('requisition-list', ['requisitions' => $result]);
+	return view('requisition-list', ['requisitions' => $result, 'text' => $text]);
 });
