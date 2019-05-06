@@ -24,6 +24,7 @@
 					<th>Assunto</th>
 					<th>Categoria</th>
 					<th>Descrição</th>
+					<th>Data / Hora</th>
 				<tr>
 			</thead>
 			<tbody>
@@ -33,6 +34,7 @@
 						<td>{{ $req->topic }}</td>
 						<td>{{ $req->category->name }}</td>
 						<td>{{ str_limit($req->description, $limit = 40, $end = '...') }}</td>
+						<td>{{ $req->created_at }}
 					</tr>
 				@endforeach
 			</tbody>
