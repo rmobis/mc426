@@ -22,7 +22,7 @@ Contribuidores do Projeto (em ordem alfabética)
   * Extração de Requisitos do Projeto
   * Entrevistas com o Cliente (DAC)
 
-* **[Natália Cruz](https://github.com/rmobis)**
+* **[Natália Cruz](https://github.com/natalhuda)**
 
 * **[Raphael Mobis](https://github.com/rmobis)**
 
