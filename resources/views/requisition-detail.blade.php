@@ -8,7 +8,13 @@
 			<h1>Solicitação #{{$requisition->id}}</h1>
 		</div>
 		<div class="col text-right">
-			<button class="btn btn-danger">Remover</button>
+			@if ($requisition->status !== 'deleted')
+				<form action="/list/{{$requisition->id}}" method="POST">
+					@method('DELETE')
+					@csrf
+					<button type="submit" class="btn btn-danger">Remover</button>
+				</form>
+			@endif
 		</div>
 	</div>
 	<br>
@@ -27,6 +33,12 @@
 						<b>Descrição:</b>
 					</h5>
 					{{$requisition->description}}
+				</li>
+				<li class="list-group-item">
+					<h5 class="mb-1">
+						<b>Status:</b>
+					</h5>
+					{{$requisition->status ?? "-"}}
 				</li>
 			</ul>
 		</div>

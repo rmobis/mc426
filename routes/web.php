@@ -26,6 +26,7 @@ Route::post('/', function () {
 	$req->topic = request('topic');
 	$req->category_id = request('category');
 	$req->description = request('description');
+	$req->status = 'open';
 
 	$req->save();
 
@@ -47,4 +48,12 @@ Route::get('/list/{id}', function ($id) {
 	$requisition = Requisition::with('category')->findOrFail($id);
 
 	return view('requisition-detail', ['requisition' => $requisition]);
+});
+
+Route::delete('/list/{id}', function ($id) {
+	$requisition = Requisition::with('category')->find($id);
+	$requisition->status = 'deleted';
+	$requisition->save();
+
+	return redirect('list');
 });
