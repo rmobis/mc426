@@ -79,6 +79,11 @@ main {
     justify-content: space-between;
 }
 
+// Requisition Detail Page
+.list-group-item {
+	background: transparent;
+}
+
 // Media queries
 @media (max-width: 768px) {
 	.banner {

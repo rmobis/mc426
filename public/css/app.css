@@ -10736,6 +10736,10 @@ main {
   justify-content: space-between;
 }
 
+.list-group-item {
+  background: transparent;
+}
+
 @media (max-width: 768px) {
   .banner h2 {
     font-size: 1.3rem;

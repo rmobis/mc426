@@ -32,18 +32,19 @@ Route::post('/', function () {
 	return redirect('/list');
 });
 
-Route::get('/list', function () {
-	$requisitions = Requisition::with('category')->get();
-
-	return view('requisition-list', ['requisitions' => $requisitions]);
-});
-
-Route::post('/list', function(Request $request) {
+Route::post('/list', function (Request $request) {
 	$search = request('search');
-	return redirect('list/'.$search);
+	return $search ? redirect('list?q='.$search) : redirect('list');
 });
 
-Route::get('/list/{text}', function ($text) {
+Route::get('/list', function (Request $request) {
+	$text = request('q');
 	$result = Requisition::where("description", "LIKE", "%$text%")->orWhere("topic", "LIKE", "%$text%")->get();
 	return view('requisition-list', ['requisitions' => $result, 'text' => $text]);
+});
+
+Route::get('/list/{id}', function ($id) {
+	$requisition = Requisition::with('category')->findOrFail($id);
+
+	return view('requisition-detail', ['requisition' => $requisition]);
 });

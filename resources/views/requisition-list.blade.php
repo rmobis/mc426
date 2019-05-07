@@ -29,7 +29,11 @@
 			<tbody>
 				@foreach ($requisitions as $req)
 					<tr>
-						<td>{{ $req->id }}</td>
+						<td>
+							<a href="/list/{{ $req-> id}}">
+								{{ $req->id }}
+							</a>
+						</td>
 						<td>{{ $req->topic }}</td>
 						<td>{{ $req->category->name }}</td>
 						<td>{{ str_limit($req->description, $limit = 40, $end = '...') }}</td>
