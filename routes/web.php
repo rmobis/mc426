@@ -14,47 +14,14 @@ use \App\Category;
 |
 */
 
-Route::get('/', function () {
-	$categories = Category::all();
+Route::get('/', 'RequisitionController@showForm');
 
-	return view('requisition-form', ['categories' => $categories]);
-});
+Route::post('/', 'RequisitionController@newRequisition');
 
-Route::post('/', function () {
-	$req = new Requisition();
+Route::post('/list', 'RequisitionController@postSearch');
 
-	$req->topic = request('topic');
-	$req->category_id = request('category');
-	$req->description = request('description');
-	$req->status = 'open';
+Route::get('/list', 'RequisitionController@search');
 
-	$req->save();
+Route::get('/list/{id}', 'RequisitionController@show');
 
-	return redirect('/list');
-});
-
-Route::post('/list', function (Request $request) {
-	$search = request('search');
-	return $search ? redirect('list?q='.$search) : redirect('list');
-});
-
-Route::get('/list', function (Request $request) {
-	$text = request('q');
-	$result = Requisition::searchLike($text)->get();
-
-	return view('requisition-list', ['requisitions' => $result, 'text' => $text]);
-});
-
-Route::get('/list/{id}', function ($id) {
-	$requisition = Requisition::with('category')->findOrFail($id);
-
-	return view('requisition-detail', ['requisition' => $requisition]);
-});
-
-Route::delete('/list/{id}', function ($id) {
-	$requisition = Requisition::with('category')->find($id);
-	$requisition->status = 'deleted';
-	$requisition->save();
-
-	return redirect('list');
-});
+Route::delete('/list/{id}', 'RequisitionController@delete');
