@@ -40,7 +40,8 @@ Route::post('/list', function (Request $request) {
 
 Route::get('/list', function (Request $request) {
 	$text = request('q');
-	$result = Requisition::where("description", "LIKE", "%$text%")->orWhere("topic", "LIKE", "%$text%")->get();
+	$result = Requisition::searchLike($text)->get();
+
 	return view('requisition-list', ['requisitions' => $result, 'text' => $text]);
 });
 
