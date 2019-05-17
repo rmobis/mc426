@@ -21,6 +21,7 @@
 			<thead class="thead-light">
 				<tr>
 					<th>Número</th>
+					<th>Status</th>
 					<th>Assunto</th>
 					<th>Categoria</th>
 					<th>Descrição</th>
@@ -34,6 +35,7 @@
 								{{ $req->id }}
 							</a>
 						</td>
+						<td>{{ $req->status ?? '-' }}</td>
 						<td>{{ $req->topic }}</td>
 						<td>{{ $req->category->name }}</td>
 						<td>{{ str_limit($req->description, $limit = 40, $end = '...') }}</td>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Category;
+use App\Requisition;
 use App\Http\Controllers\Controller;
 
 class RequisitionController extends Controller {
@@ -28,7 +30,8 @@ class RequisitionController extends Controller {
 
 	public function search() {
 		$text = request('q');
-		$result = Requisition::searchLike($text)->get();
+		$req = new Requisition();
+		$result = $req->searchLike($text)->get();
 
 		return view('requisition-list', ['requisitions' => $result, 'text' => $text]);
 	}

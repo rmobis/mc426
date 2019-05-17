@@ -10,7 +10,7 @@ class Requisition extends Model {
 	}
 
 	public function searchLike($text) {
-		return this->where("description", "LIKE", "%$text%")
+		return $this->where("description", "LIKE", "%$text%")
 		->orWhere("topic", "LIKE", "%$text%");
 	}
 }
