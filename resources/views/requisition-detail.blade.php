@@ -14,6 +14,8 @@
 					@csrf
 					<button type="submit" class="btn btn-danger float-right">Remover</button>
 				</form>
+
+				<a class="btn btn-dac float-right" style="margin-right: 10px;" href="/list/{{$requisition->id}}/edit" role="button">Editar</a>
 			@endif
 
 			@if (!is_null($requisition->status) && $requisition->status === 'open')
@@ -43,25 +45,32 @@
 				</li>
 				<li class="list-group-item">
 					<h5 class="mb-1">
-						<b>Status:</b>
+						<b>Descrição:</b>
 					</h5>
-					{{$requisition->status ?? "-"}}
+					{{$requisition->description}}
 				</li>
+
 			</ul>
 		</div>
 		<div class="col">
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
 					<h5 class="mb-1">
-						<b>Data de criação:</b>
+						<b>Data de Criação:</b>
 					</h5>
 					{{$requisition->created_at}}
 				</li>
 				<li class="list-group-item">
 					<h5 class="mb-1">
-						<b>Descrição:</b>
+						<b>Data de Atualização:</b>
 					</h5>
-					{{$requisition->description}}
+					{{$requisition->updated_at}}
+				</li>
+				<li class="list-group-item">
+					<h5 class="mb-1">
+						<b>Status:</b>
+					</h5>
+					{{$requisition->status ?? "-"}}
 				</li>
 			</ul>
 		</div>

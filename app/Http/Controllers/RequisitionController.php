@@ -56,6 +56,13 @@ class RequisitionController extends Controller {
 	}
 
 	public function edit($id) {
+		$categories = Category::all();
+		$requisition = Requisition::with('category')->findOrFail($id);
+
+		return view('requisition-edit', ['categories' => $categories, 'requisition' => $requisition]);
+	}
+
+	public function editRequisition($id) {
 		$requisition = Requisition::with('category')->find($id);
 
 		$requisition->topic = request('topic');
