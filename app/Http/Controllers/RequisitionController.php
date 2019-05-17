@@ -47,6 +47,26 @@ class RequisitionController extends Controller {
 		return view('requisition-detail', ['requisition' => $requisition]);
 	}
 
+	public function close($id) {
+		$requisition = Requisition::with('category')->find($id);
+		$requisition->status = 'closed';
+		$requisition->save();
+
+		return $this->show($id);
+	}
+
+	public function edit($id) {
+		$requisition = Requisition::with('category')->find($id);
+
+		$requisition->topic = request('topic');
+		$requisition->category_id = request('category');
+		$requisition->description = request('description');
+
+		$requisition->save();
+
+		return $this->show($id);
+	}
+
 	public function delete($id) {
 		$requisition = Requisition::with('category')->find($id);
 		$requisition->status = 'deleted';

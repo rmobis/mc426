@@ -25,3 +25,7 @@ Route::get('/list', 'RequisitionController@search');
 Route::get('/list/{id}', 'RequisitionController@show');
 
 Route::delete('/list/{id}', 'RequisitionController@delete');
+
+Route::post('/list/{id}/close', 'RequisitionController@close');
+
+Route::post('/list/{id}/edit', 'RequisitionController@edit');

@@ -8,11 +8,18 @@
 			<h1>Solicitação #{{$requisition->id}}</h1>
 		</div>
 		<div class="col text-right">
-			@if ($requisition->status !== 'deleted')
+			@if (!is_null($requisition->status) && $requisition->status !== 'deleted')
 				<form action="/list/{{$requisition->id}}" method="POST">
 					@method('DELETE')
 					@csrf
-					<button type="submit" class="btn btn-danger">Remover</button>
+					<button type="submit" class="btn btn-danger float-right">Remover</button>
+				</form>
+			@endif
+
+			@if (!is_null($requisition->status) && $requisition->status === 'open')
+				<form action="/list/{{$requisition->id}}/close" method="POST">
+					@csrf
+					<button type="submit" class="btn btn-secondary float-right" style="margin-right: 10px;">Fechar Solicitação</button>
 				</form>
 			@endif
 		</div>
@@ -30,9 +37,9 @@
 				</li>
 				<li class="list-group-item">
 					<h5 class="mb-1">
-						<b>Descrição:</b>
+						<b>Categoria:</b>
 					</h5>
-					{{$requisition->description}}
+					{{$requisition->category->name}}
 				</li>
 				<li class="list-group-item">
 					<h5 class="mb-1">
@@ -52,9 +59,9 @@
 				</li>
 				<li class="list-group-item">
 					<h5 class="mb-1">
-						<b>Categoria:</b>
+						<b>Descrição:</b>
 					</h5>
-					{{$requisition->category->name}}
+					{{$requisition->description}}
 				</li>
 			</ul>
 		</div>
