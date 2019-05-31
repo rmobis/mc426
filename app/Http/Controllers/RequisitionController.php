@@ -30,15 +30,40 @@ class RequisitionController extends Controller {
 
 	public function search() {
 		$text = request('q');
-		$req = new Requisition();
-		$result = $req->searchLike($text)->get();
+		$status = request('status');
+		$category = request('category');
 
-		return view('requisition-list', ['requisitions' => $result, 'text' => $text]);
+		$req = new Requisition();
+		$result = $req
+			->when($text, function($req, $text) {
+				return $req->where("description", "LIKE", "%$text%")
+					->orWhere("topic", "LIKE", "%$text%");
+			})
+			->when($status, function($req, $status) {
+				return $req->where('status', $status);
+		   	})
+			->when($category, function($req, $category) {
+				return $req->where('category_id', $category);
+		   	})
+			->paginate(10);
+
+		$categories = Category::all();
+
+		return view('requisition-list', [
+			'categories' => $categories,
+			'requisitions' => $result,
+			'text' => $text,
+			'status' => $status,
+			'category' => $category
+		]);
 	}
 
 	public function postSearch() {
 		$search = request('search');
-		return $search ? redirect('list?q='.$search) : redirect('list');
+		$status = request('status');
+		$category = request('category');
+
+		return redirect('list?q='.$search.'&status='.$status.'&category='.$category);
 	}
 
 	public function show($id) {

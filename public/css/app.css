@@ -10736,6 +10736,10 @@ main {
   justify-content: space-between;
 }
 
+.form-inline > div {
+  margin: 0 10px;
+}
+
 .list-group-item {
   background: transparent;
 }

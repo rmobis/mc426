@@ -78,6 +78,9 @@ main {
     align-items: center;
     justify-content: space-between;
 }
+.form-inline > div {
+	margin: 0 10px;
+}
 
 // Requisition Detail Page
 .list-group-item {
