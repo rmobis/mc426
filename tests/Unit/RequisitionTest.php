@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use \App\Requisition;
+use \App\Category;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -12,8 +13,12 @@ class RequisitionTest extends TestCase {
 		$this->assertNotNull($req);
 	}
 
-	public function testRequisitionValidatesRequiredField() {
+	public function testRequisitionFailsWithNullTopic() {
+		$this->expectException(\Illuminate\Database\QueryException::class);
 		$req = new Requisition();
-		$req->title = null;
+		$req->topic = NULL;
+		$req->description = "hai";
+		$req->category_id = 0;
+		$req->save();
 	}
 }
