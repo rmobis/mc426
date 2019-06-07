@@ -22,6 +22,7 @@ class RequisitionTest extends TestCase {
 		$req->save();
 	}
 
+
 	public function testRequisitionValidadwithoutDescription(){
 		$this->expectException(\Illuminate\Database\QueryException::class);
 		$req = new Requisition();
@@ -29,6 +30,14 @@ class RequisitionTest extends TestCase {
 		$req->topic = "testedescription";
 		$req->category_id = 0;
 		$req->save();
+  }
 
+	public function testRequisitionFailsWithNullCategory() {
+		$this->expectException(\Illuminate\Database\QueryException::class);
+		$req = new Requisition();
+		$req->topic = "Topic #3";
+		$req->description = "Test123...";
+		$req->category_id = NULL;
+		$req->save();
 	}
 }
