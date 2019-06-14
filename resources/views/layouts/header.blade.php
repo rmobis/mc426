@@ -12,21 +12,44 @@
 <div class="navigation">
 	<div class="container">
 		<ul class="menu">
-			<li>
-				<a href="/list" class="{{ stripos(Request::path(), 'list') !== false ? 'active' : ''  }}">
-					Minhas Solicitações
-				</a>
-			</li>
-			<li>
-				<a href="/" class="{{ Request::path() == '/' ? 'active' : ''  }}">
-					Nova Solicitação
-				</a>
-			</li>
-			<!-- <li>
-				<a href="#">
-					Sair
-				</a>
-			</li> -->
+			@guest
+				<li>
+					<a href="{{ route('login') }}" class="{{ Route::is('login') == '/' ? 'active' : '' }}">
+						Entrar
+					</a>
+				</li>
+				@if (Route::has('register'))
+					<li>
+						<a href="{{ route('register') }}" class="{{ Route::is('register') == '/' ? 'active' : '' }}">
+							Cadastrar
+						</a>
+					</li>
+				@endif
+			@else
+				<li>
+					<a href="/list" class="{{ stripos(Request::path(), 'list') !== false ? 'active' : '' }}">
+						Minhas Solicitações
+					</a>
+				</li>
+				<li>
+					<a href="/" class="{{ Request::path() == '/' ? 'active' : '' }}">
+						Nova Solicitação
+					</a>
+				</li>
+				<li>
+					<a
+						href="{{ route('logout') }}"
+						class="{{ Route::is('logout') ? 'active' : '' }}"
+						onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+					>
+						Logout
+					</a>
+
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
+				</li>
+			@endguest
 		</ul>
 	</div>
 </div>
