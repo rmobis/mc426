@@ -15,17 +15,19 @@ class CreateRatingTable extends Migration
     {
         Schema::create('rating', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('requisition_id');
+            $table->unsignedBigInteger('user_id');
             $table->decimal('rate');
             $table->text('description');
-            $table->unsignedBigInteger('requisition_id');
+            $table->timestamps();
+
             $table->foreign('requisition_id')
                 ->references('id')
                 ->on('requisitions');
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
+            
         });
     }
 
