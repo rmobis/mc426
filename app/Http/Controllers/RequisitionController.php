@@ -83,6 +83,7 @@ class RequisitionController extends Controller {
 	public function close($id) {
 		$requisition = Requisition::with('category')->find($id);
 		$requisition->status = 'closed';
+		$requisition->closing_reason = request('reason');
 		$requisition->save();
 
 		return $this->show($id);
@@ -113,5 +114,13 @@ class RequisitionController extends Controller {
 		$requisition->save();
 
 		return redirect('list');
+	}
+
+	public function open($id) {
+		$requisition = Requisition::with('category')->find($id);
+		$requisition->status = 'open';
+		$requisition->save();
+
+		return view('requisition-detail', ['requisition' => $requisition]);
 	}
 }

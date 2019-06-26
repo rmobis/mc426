@@ -28,6 +28,8 @@ Route::delete('/list/{id}', 'RequisitionController@delete');
 
 Route::post('/list/{id}/close', 'RequisitionController@close');
 
+Route::post('/list/{id}/open', 'RequisitionController@open');
+
 Route::post('/list/{id}/edit', 'RequisitionController@editRequisition');
 
 Route::get('/list/{id}/edit', 'RequisitionController@edit');

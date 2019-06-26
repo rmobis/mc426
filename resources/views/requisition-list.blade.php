@@ -75,9 +75,11 @@
 								{{ $req->id }}
 							</a>
 						</td>
-						<td>{{ $req->status ?? '-' }}</td>
+						<td>
+							<span style="text-transform: capitalize;" class="badge {{$req->status === 'open' ? 'badge-success' : ($req->status === 'closed' ? 'badge-danger' : ($req->status === 'deleted' ? 'badge-secondary' : ''))}}">{{ $req->status ?? '-' }}</span>
+						</td>
 						<td>{{ $req->topic }}</td>
-						<td>{{ $req->category->name }}</td>
+						<td>{{ isset($req->category) ? $req->category->name : '-' }}</td>
 						<td>{{ str_limit($req->description, $limit = 40, $end = '...') }}</td>
 						<td>{{ $req->created_at }}
 					</tr>
