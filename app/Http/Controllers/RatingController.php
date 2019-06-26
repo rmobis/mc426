@@ -36,7 +36,14 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rating = new Rating();
+
+		$rating->rate = request('rate');
+        $rating->description = request('description');
+        $rating->requisition_id = request('requisition_id');
+		$rating->save();
+
+		return redirect('/ratings');
     }
 
     /**

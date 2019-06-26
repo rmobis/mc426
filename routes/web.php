@@ -34,5 +34,7 @@ Route::get('/list/{id}/edit', 'RequisitionController@edit');
 
 Route::get('/ratings', 'RatingController@index');
 
+Route::post('/ratings', 'RatingController@store');
+
 
 
