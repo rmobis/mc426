@@ -8,21 +8,14 @@
 			<h1>Solicitação #{{$requisition->id}}</h1>
 		</div>
 		<div class="col text-right">
-			@if (!is_null($requisition->status) && $requisition->status !== 'deleted')
-				<form action="/list/{{$requisition->id}}" method="POST">
-					@method('DELETE')
+			@if (!is_null($requisition->status) && $requisition->status === 'closed')
+				<form action="/list/{{$requisition->id}}/open" method="POST">
 					@csrf
-					<button type="submit" class="btn btn-danger float-right">Remover</button>
+					<button type="submit" class="btn btn-success float-right">Reabrir</button>
 				</form>
-
-				<a class="btn btn-dac float-right" style="margin-right: 10px;" href="/list/{{$requisition->id}}/edit" role="button">Editar</a>
 			@endif
-
 			@if (!is_null($requisition->status) && $requisition->status === 'open')
-				<form action="/list/{{$requisition->id}}/close" method="POST">
-					@csrf
-					<button type="submit" class="btn btn-secondary float-right" style="margin-right: 10px;">Fechar Solicitação</button>
-				</form>
+				<a class="btn btn-dac float-right" style="margin-right: 10px;" href="/list/{{$requisition->id}}/edit" role="button">Editar</a>
 			@endif
 		</div>
 	</div>
@@ -41,7 +34,7 @@
 					<h5 class="mb-1">
 						<b>Categoria:</b>
 					</h5>
-					{{$requisition->category->name}}
+					{{isset($requisition->category) ? $requisition->category->name : '-'}}
 				</li>
 				<li class="list-group-item">
 					<h5 class="mb-1">
@@ -49,7 +42,6 @@
 					</h5>
 					{{$requisition->description}}
 				</li>
-
 			</ul>
 		</div>
 		<div class="col">
@@ -70,9 +62,33 @@
 					<h5 class="mb-1">
 						<b>Status:</b>
 					</h5>
-					{{$requisition->status ?? "-"}}
+					<span style="text-transform: capitalize;" class="badge {{$requisition->status === 'open' ? 'badge-success' : ($requisition->status === 'closed' ? 'badge-danger' : ($requisition->status === 'deleted' ? 'badge-secondary' : ''))}}">{{ $requisition->status ?? '-' }}</span>
 				</li>
+				@if (!is_null($requisition->status) && $requisition->status === 'closed')
+					<li class="list-group-item">
+						<h5 class="mb-1">
+							<b>Motivo do fechamento:</b>
+						</h5>
+						{{$requisition->closing_reason}}
+					</li>
+				@endif
 			</ul>
 		</div>
 	</div>
+	@if (!is_null($requisition->status) && $requisition->status === 'open' && auth()->user()->is_admin)
+		<br>
+		<br>
+		<div class="row">
+			<div class="col">
+				<form action="/list/{{$requisition->id}}/close" method="POST">
+					@csrf
+					<div class="form-group">
+						<h4>Fechamento de Solicitação</h4>
+						<textarea class="form-control" name="reason" cols="30" rows="5" placeholder="Motivo do fechamento"></textarea>
+					</div>
+					<button type="submit" class="btn btn-secondary">Fechar Solicitação</button>
+				</form>
+			</div>
+		</div>
+	@endif
 @stop

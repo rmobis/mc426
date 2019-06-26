@@ -31,5 +31,12 @@
 
 		<button class="btn btn-dac" type="submit">Editar</button>
 	</form>
+	@if (!is_null($requisition->status) && $requisition->status === 'open' && auth()->user()->is_admin)
+		<form style="position: absolute; bottom: 0px; left: 90px;" action="/list/{{$requisition->id}}" method="POST">
+			@method('DELETE')
+			@csrf
+			<button type="submit" class="btn btn-danger" style="margin-left: 10px;">Remover</button>
+		</form>
+	@endif
 </div>
 @stop
