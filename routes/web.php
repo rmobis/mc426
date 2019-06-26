@@ -32,9 +32,7 @@ Route::post('/list/{id}/edit', 'RequisitionController@editRequisition');
 
 Route::get('/list/{id}/edit', 'RequisitionController@edit');
 
-Route::get('/ratings',function(){
-    $ratings = Rating::all();
-    return $ratings;
+Route::get('/ratings', 'RatingController@index');
 
-});
+
 
