@@ -10,7 +10,7 @@ class Requisition extends Model {
 	}
 
 	public function rating() {
-		return $this->hasTo(Requisition::class);
+		return $this->hasOne(Requisition::class);
 	}
 
 	public function searchLike($text) {
