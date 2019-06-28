@@ -40,4 +40,12 @@ class RequisitionTest extends TestCase {
 		$req->category_id = NULL;
 		$req->save();
 	}
+
+	public function testRequisitionDisplaysRating() {
+		$req = new Requisition();
+		$req->topic = "Topic #3";
+		$req->description = "Test123...";
+		$req->category_id = NULL;
+		$req->save();
+	}
 }
