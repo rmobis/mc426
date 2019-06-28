@@ -16,6 +16,18 @@ class UsersTableSeeder extends Seeder {
 			'is_admin' => true
 		]);
 
+		factory(App\User::class, 1)->create([
+			'email' => 'dsfugimoto@gmail.com',
+			'password' => bcrypt('daviddavid'),
+			'is_admin' => false
+		]);
+
+		factory(App\User::class, 1)->create([
+			'email' => 'fbidu@gmail.com',
+			'password' => bcrypt('oibidu'),
+			'is_admin' => false
+		]);
+
 		factory(App\User::class, 5)->create();
 	}
 }
