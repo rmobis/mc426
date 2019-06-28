@@ -13,7 +13,7 @@ class AddStatusToRequisitions extends Migration {
 	 */
 	public function up() {
 		Schema::table('requisitions', function (Blueprint $table) {
-			$table->enum('status', ['open', 'closed', 'deleted'])->nullable();
+			$table->enum('status', ['open', 'closed', 'deleted'])->default('open');
 		});
 	}
 
