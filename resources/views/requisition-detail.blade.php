@@ -42,6 +42,14 @@
 					</h5>
 					{{$requisition->description}}
 				</li>
+				@if (!is_null($requisition->status) && $requisition->status === 'closed')
+					<li class="list-group-item">
+						<h5 class="mb-1">
+							<b>Motivo do fechamento:</b>
+						</h5>
+						{{$requisition->closing_reason}}
+					</li>
+				@endif
 			</ul>
 		</div>
 		<div class="col">
@@ -64,17 +72,37 @@
 					</h5>
 					<span style="text-transform: capitalize;" class="badge {{$requisition->status === 'open' ? 'badge-success' : ($requisition->status === 'closed' ? 'badge-danger' : ($requisition->status === 'deleted' ? 'badge-secondary' : ''))}}">{{ $requisition->status ?? '-' }}</span>
 				</li>
-				@if (!is_null($requisition->status) && $requisition->status === 'closed')
-					<li class="list-group-item">
-						<h5 class="mb-1">
-							<b>Motivo do fechamento:</b>
-						</h5>
-						{{$requisition->closing_reason}}
-					</li>
-				@endif
 			</ul>
 		</div>
 	</div>
+	@if (!is_null($requisition->status) && $requisition->status === 'closed' && $requisition->user->id === auth()->user()->id)
+		<br>
+		<br>
+		<div class="row">
+			<div class="col">
+				<form action="/ratings" method="POST">
+					@csrf
+					<h4>Avaliação de Atendimento</h4>
+					<div class="form-group">
+						<input name="requisition_id" type="hidden" value="{{$requisition->id}}">
+						<label for="rate">Nota (de 1 a 5):</label>
+						<select name="rate" class="form-control">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="description">Comentários (Opcional):</label>
+						<textarea class="form-control" name="description" cols="30" rows="5" placeholder="Comentários sobre o atendimento"></textarea>
+					</div>
+					<button type="submit" class="btn btn-success">Submeter Avaliação</button>
+				</form>
+			</div>
+		</div>
+	@endif
 	@if (!is_null($requisition->status) && $requisition->status === 'open' && auth()->user()->is_admin)
 		<br>
 		<br>
