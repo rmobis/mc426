@@ -1,5 +1,5 @@
 <?php
-
+use \App\Rating;
 use \App\Requisition;
 use \App\Category;
 
@@ -33,5 +33,9 @@ Route::post('/list/{id}/open', 'RequisitionController@open');
 Route::post('/list/{id}/edit', 'RequisitionController@editRequisition');
 
 Route::get('/list/{id}/edit', 'RequisitionController@edit');
+
+Route::get('/ratings', 'RatingController@index');
+
+Route::post('/ratings', 'RatingController@store');
 
 Auth::routes();

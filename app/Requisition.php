@@ -16,6 +16,10 @@ class Requisition extends Model {
 		return $this->belongsTo(User::class);
 	}
 
+	public function rating() {
+		return $this->hasOne(Rating::class);
+	}
+
 	public function searchLike($text) {
 		return $this->where("description", "LIKE", "%$text%")
 		->orWhere("topic", "LIKE", "%$text%");
