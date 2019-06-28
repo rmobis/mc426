@@ -8,6 +8,9 @@ $factory->define(App\Requisition::class, function (Faker $faker) {
 		'category_id' => function () {
 			return App\Category::inRandomOrder()->first()->id;
 		},
+		'user_id' => function () {
+			return App\User::inRandomOrder()->first()->id;
+		},
 		'description' => $faker->paragraph
 	];
 });
