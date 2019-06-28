@@ -28,6 +28,12 @@ class UsersTableSeeder extends Seeder {
 			'is_admin' => false
 		]);
 
+		factory(App\User::class, 1)->create([
+			'email' => 'lilian@dac.unicamp.br',
+			'password' => bcrypt('oibidu'),
+			'is_admin' => true
+		]);
+
 		factory(App\User::class, 5)->create();
 	}
 }
