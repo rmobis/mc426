@@ -15,7 +15,7 @@ class RatingController extends Controller {
 	 */
 	public function index() {
 		$ratings = Rating::all();
-		return $ratings;
+		return view('rating-list', ['ratings' => $ratings]);
 	}
 
 	/**
@@ -41,7 +41,7 @@ class RatingController extends Controller {
 		$rating->requisition_id = request('requisition_id');
 		$rating->save();
 
-		return redirect('/ratings');
+		return redirect('/list/' . request('requisition_id'));
 	}
 
 	/**

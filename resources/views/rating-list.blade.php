@@ -25,13 +25,12 @@
 								{{ $rat->requisition_id }}
 							</a>
 						</td>
-						<td>{{ $req->rate }}</td>
-						<td>{{ $req->description }}</td>
-						<td>{{ $req->created_at }}
+						<td>{{ $rat->rate }}</td>
+						<td>{{ $rat->description }}</td>
+						<td>{{ $rat->created_at }}
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
-		{{ $ratings->links() }}
 	</div>
 @stop

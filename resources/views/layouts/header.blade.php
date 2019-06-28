@@ -28,7 +28,7 @@
 			@else
 				<li>
 					<a href="/list" class="{{ stripos(Request::path(), 'list') !== false ? 'active' : '' }}">
-						Minhas Solicitações
+						{{auth()->user()->is_admin ? 'Solicitações' : 'Minhas Solicitações'}}
 					</a>
 				</li>
 				<li>
@@ -36,6 +36,13 @@
 						Nova Solicitação
 					</a>
 				</li>
+				@if (auth()->user()->is_admin)
+					<li>
+						<a href="/ratings" class="{{ stripos(Request::path(), 'ratings') !== false ? 'active' : '' }}">
+							Avaliações
+						</a>
+					</li>
+				@endif
 				<li>
 					<a
 						href="{{ route('logout') }}"

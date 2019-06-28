@@ -50,6 +50,16 @@
 						{{$requisition->closing_reason}}
 					</li>
 				@endif
+				@if (isset($requisition->rating))
+					<li class="list-group-item">
+						<h5 class="mb-1">
+							<b>Avaliação de Atendimento:</b>
+						</h5>
+						Nota: {{$requisition->rating->rate ?? 0}}
+						<br>
+						{{$requisition->rating->description}}
+					</li>
+				@endif
 			</ul>
 		</div>
 		<div class="col">
@@ -75,7 +85,7 @@
 			</ul>
 		</div>
 	</div>
-	@if (!is_null($requisition->status) && $requisition->status === 'closed' && $requisition->user->id === auth()->user()->id)
+	@if (!is_null($requisition->status) && $requisition->status === 'closed' && $requisition->user->id === auth()->user()->id && !isset($requisition->rating))
 		<br>
 		<br>
 		<div class="row">
