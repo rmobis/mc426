@@ -14,7 +14,7 @@ use \App\Category;
 |
 */
 
-Route::get('/', 'RequisitionController@showForm');
+Route::get('/', 'RequisitionController@showForm')->name('home');
 
 Route::post('/', 'RequisitionController@newRequisition');
 
@@ -28,6 +28,8 @@ Route::delete('/list/{id}', 'RequisitionController@delete');
 
 Route::post('/list/{id}/close', 'RequisitionController@close');
 
+Route::post('/list/{id}/open', 'RequisitionController@open');
+
 Route::post('/list/{id}/edit', 'RequisitionController@editRequisition');
 
 Route::get('/list/{id}/edit', 'RequisitionController@edit');
@@ -36,5 +38,4 @@ Route::get('/ratings', 'RatingController@index');
 
 Route::post('/ratings', 'RatingController@store');
 
-
-
+Auth::routes();

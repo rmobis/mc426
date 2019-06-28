@@ -8,6 +8,14 @@ use App\Requisition;
 use App\Http\Controllers\Controller;
 
 class RequisitionController extends Controller {
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		$this->middleware('auth');
+	}
 
 	public function showForm() {
 		$categories = Category::all();
@@ -75,6 +83,7 @@ class RequisitionController extends Controller {
 	public function close($id) {
 		$requisition = Requisition::with('category')->find($id);
 		$requisition->status = 'closed';
+		$requisition->closing_reason = request('reason');
 		$requisition->save();
 
 		return $this->show($id);
@@ -105,5 +114,13 @@ class RequisitionController extends Controller {
 		$requisition->save();
 
 		return redirect('list');
+	}
+
+	public function open($id) {
+		$requisition = Requisition::with('category')->find($id);
+		$requisition->status = 'open';
+		$requisition->save();
+
+		return view('requisition-detail', ['requisition' => $requisition]);
 	}
 }
