@@ -11,16 +11,23 @@ class HomeTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function testBasicTest() {
+	public function testHomeSendsToLogin() {
 		// The user tries to load the home page
 		$response = $this->get('/');
+
+		// They get redirected to a login pager!
+		$response->assertRedirect("login");
+	}
+
+	public function testLoginPromptsForLoginDetails() {
+		// The user tries to load the kogin page
+		$response = $this->get('/login');
 
 		// They succeed!
 		$response->assertStatus(200);
 
 		// A nice form is shown with some field names
-		$response->assertSee("Assunto");
-		$response->assertSee("Categoria");
-		$response->assertSee("Descrição");
+		$response->assertSee("E-Mail Address");
+		$response->assertSee("Password");
 	}
 }
