@@ -37,29 +37,32 @@ class RequisitionController extends Controller {
 	}
 
 	public function search() {
+		$user = auth()->user();
 		$text = request('q');
 		$status = request('status');
 		$category = request('category');
 
-		$req = new Requisition();
-		$result = $req
-			->when($text, function($req, $text) {
-				return $req->where("description", "LIKE", "%$text%")
+		$reqs = Requisition::with('category')
+			->when(!$user->is_admin, function ($qry) use ($user) {
+				return $qry->where('user_id', $user->id);
+			})
+			->when($text, function ($qry, $text) {
+				return $qry->where("description", "LIKE", "%$text%")
 					->orWhere("topic", "LIKE", "%$text%");
 			})
-			->when($status, function($req, $status) {
-				return $req->where('status', $status);
-		   	})
-			->when($category, function($req, $category) {
-				return $req->where('category_id', $category);
-		   	})
+			->when($status, function ($qry, $status) {
+				return $qry->where('status', $status);
+			})
+			->when($category, function ($qry, $category) {
+				return $qry->where('category_id', $category);
+			})
 			->paginate(10);
 
 		$categories = Category::all();
 
 		return view('requisition-list', [
 			'categories' => $categories,
-			'requisitions' => $result,
+			'requisitions' => $reqs,
 			'text' => $text,
 			'status' => $status,
 			'category' => $category
