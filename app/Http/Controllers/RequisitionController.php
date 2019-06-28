@@ -77,7 +77,7 @@ class RequisitionController extends Controller {
 		$status = request('status');
 		$category = request('category');
 
-		return redirect('list?q='.$search.'&status='.$status.'&category='.$category);
+		return redirect('list?q=' . $search . '&status=' . $status . '&category=' . $category);
 	}
 
 	public function show($id) {
