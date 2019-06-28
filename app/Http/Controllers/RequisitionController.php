@@ -6,6 +6,7 @@ use App\User;
 use App\Category;
 use App\Requisition;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class RequisitionController extends Controller {
 	/**
@@ -30,6 +31,7 @@ class RequisitionController extends Controller {
 		$req->category_id = request('category');
 		$req->description = request('description');
 		$req->status = 'open';
+		$req->user_id = Auth::getUser()->id;
 
 		$req->save();
 
