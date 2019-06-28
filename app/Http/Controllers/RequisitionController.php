@@ -46,6 +46,9 @@ class RequisitionController extends Controller {
 			->when(!$user->is_admin, function ($qry) use ($user) {
 				return $qry->where('user_id', $user->id);
 			})
+			->when($user->is_admin, function ($qry) use ($user) {
+				return $qry->withTrashed();
+			})
 			->when($text, function ($qry, $text) {
 				return $qry->where("description", "LIKE", "%$text%")
 					->orWhere("topic", "LIKE", "%$text%");
